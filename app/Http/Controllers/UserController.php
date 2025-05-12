@@ -95,22 +95,16 @@ class UserController extends Controller
         $mujeres_menores = User::where('gender', 'female')->where('age', '<', 18)->count();
         $mujeres_mayores = User::where('gender', 'female')->where('age', '>=', 18)->count();
 
-        return response()->json([
-            'genero' => [
-                'hombres' => $hombres,
-                'mujeres' => $mujeres,
-            ],
-            'edad' => [
-                'menores' => $menores,
-                'mayores' => $mayores,
-            ],
-            'detalle' => [
-                'hombres_menores' => $hombres_menores,
-                'hombres_mayores' => $hombres_mayores,
-                'mujeres_menores' => $mujeres_menores,
-                'mujeres_mayores' => $mujeres_mayores,
-            ],
-        ]);
+        $poblacion = [
+            'hombres' => $hombres,
+            'mujeres' => $mujeres,
+            'mujeres_mayores' => $mujeres_mayores,
+            'mujeres_menores' => $mujeres_menores,
+            'hombres_mayores' => $hombres_mayores,
+            'hombres_menores' => $hombres_menores
+        ];
+
+        return view('users.stats', compact('poblacion'));
     }
 
 }

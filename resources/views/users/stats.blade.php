@@ -1,88 +1,286 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Estadísticas de Usuarios</h1>
+    <body>
+        <div class="board">
+            <div class="titulo_grafica">
+                <h3 class="t_grafica">Cantidad de Hombres y mujeres</h3>
+            </div>
+            <div class="sub_board">
+                <div class="sep_board"></div>
+                <div class="cont_board">
+                    <div class="graf_board">
+                        <div class="barra">
+                            <div class="sub_barra b1" style="height: {{ $poblacion['hombres'] }}%">
+                                <div class="tag_g">{{ $poblacion['hombres'] }}</div>
+                                <div class="tag_leyenda">Hombres</div>
+                            </div>
+                        </div>
+                        <div class="barra">
+                            <div class="sub_barra b2" style="height: {{ $poblacion['mujeres'] }}%">
+                                <div class="tag_g">{{ $poblacion['mujeres'] }}</div>
+                                <div class="tag_leyenda">Mujeres</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tag_board">
+                        <div class="sub_tag_board">
+                            <div>100</div>
+                            <div>90</div>
+                            <div>80</div>
+                            <div>70</div>
+                            <div>60</div>
+                            <div>50</div>
+                            <div>40</div>
+                            <div>30</div>
+                            <div>20</div>
+                            <div>10</div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="sep_board"></div>
+            </div>
+        </div>
 
-    <canvas id="generoChart" width="400" height="200"></canvas>
-    <canvas id="edadChart" width="400" height="200"></canvas>
-    <canvas id="detalleChart" width="400" height="200"></canvas>
+        <br>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        fetch('{{ route('users.stats') }}')
-            .then(response => response.json())
-            .then(data => {
-                const generoChart = new Chart(document.getElementById('generoChart'), {
-                    type: 'pie',
-                    data: {
-                        labels: ['Hombres', 'Mujeres'],
-                        datasets: [{
-                            data: [data.genero.hombres, data.genero.mujeres],
-                            backgroundColor: ['#36A2EB', '#FF6384']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Distribución por Género'
-                            }
-                        }
-                    }
-                });
+         <div class="board">
+            <div class="titulo_grafica">
+                <h3 class="t_grafica">Cantidad de Menores y Mayores</h3>
+            </div>
+            <div class="sub_board">
+                <div class="sep_board"></div>
+                <div class="cont_board">
+                    <div class="graf_board">
+                        <div class="barra">
+                            <div class="sub_barra b1" style="height: {{ ($poblacion['hombres_mayores'] + $poblacion['mujeres_mayores']) }}%">
+                                <div class="tag_g">{{ ($poblacion['hombres_mayores'] + $poblacion['mujeres_mayores']) }}</div>
+                                <div class="tag_leyenda">Mayores</div>
+                            </div>
+                        </div>
+                        <div class="barra">
+                            <div class="sub_barra b2" style="height: {{( $poblacion['mujeres_menores'] + $poblacion['hombres_menores']) }}%">
+                                <div class="tag_g">{{( $poblacion['mujeres_menores'] + $poblacion['hombres_menores']) }}</div>
+                                <div class="tag_leyenda">Menores</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tag_board">
+                        <div class="sub_tag_board">
+                            <div>100</div>
+                            <div>90</div>
+                            <div>80</div>
+                            <div>70</div>
+                            <div>60</div>
+                            <div>50</div>
+                            <div>40</div>
+                            <div>30</div>
+                            <div>20</div>
+                            <div>10</div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="sep_board"></div>
+            </div>
+        </div>
 
-                const edadChart = new Chart(document.getElementById('edadChart'), {
-                    type: 'bar',
-                    data: {
-                        labels: ['Menores de edad', 'Mayores de edad'],
-                        datasets: [{
-                            label: 'Cantidad',
-                            data: [data.edad.menores, data.edad.mayores],
-                            backgroundColor: ['#FFCE56', '#4BC0C0']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Distribución por Edad'
-                            }
-                        }
-                    }
-                });
+        <br>
 
-                const detalleChart = new Chart(document.getElementById('detalleChart'), {
-                    type: 'bar',
-                    data: {
-                        labels: [
-                            'Hombres Menores',
-                            'Hombres Mayores',
-                            'Mujeres Menores',
-                            'Mujeres Mayores'
-                        ],
-                        datasets: [{
-                            label: 'Cantidad',
-                            data: [
-                                data.detalle.hombres_menores,
-                                data.detalle.hombres_mayores,
-                                data.detalle.mujeres_menores,
-                                data.detalle.mujeres_mayores
-                            ],
-                            backgroundColor: ['#8e44ad', '#3498db', '#e67e22', '#e74c3c']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Cruce Edad-Género'
-                            }
-                        }
-                    }
-                });
-            });
-    </script>
+        <div class="board">
+            <div class="titulo_grafica">
+                <h3 class="t_grafica">Cantidad de Hombres y Mujeres (Mayores y Menores)</h3>
+            </div>
+            <div class="sub_board">
+                <div class="sep_board"></div>
+                <div class="cont_board">
+                    <div class="graf_board">
+                        <div class="barra">
+                            <div class="sub_barra b1" style="height: {{ $poblacion['hombres_mayores'] }}%">
+                                <div class="tag_g">{{ $poblacion['hombres_mayores'] }}</div>
+                                <div class="tag_leyenda">Hombres Mayores</div>
+                            </div>
+                        </div>
+                        <div class="barra">
+                            <div class="sub_barra b2" style="height: {{ $poblacion['mujeres_mayores'] }}%">
+                                <div class="tag_g">{{ $poblacion['mujeres_mayores'] }}</div>
+                                <div class="tag_leyenda">Mujeres Mayores</div>
+                            </div>
+                        </div>
+                        <div class="barra">
+                            <div class="sub_barra b3" style="height: {{ $poblacion['hombres_menores'] }}%">
+                                <div class="tag_g">{{ $poblacion['hombres_menores'] }}</div>
+                                <div class="tag_leyenda">Hombres Menores</div>
+                            </div>
+                        </div>
+                        <div class="barra">
+                            <div class="sub_barra b4" style="height: {{ $poblacion['mujeres_menores'] }}%">
+                                <div class="tag_g">{{ $poblacion['mujeres_menores'] }}</div>
+                                <div class="tag_leyenda">Mujeres Menores</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tag_board">
+                        <div class="sub_tag_board">
+                            <div>100</div>
+                            <div>90</div>
+                            <div>80</div>
+                            <div>70</div>
+                            <div>60</div>
+                            <div>50</div>
+                            <div>40</div>
+                            <div>30</div>
+                            <div>20</div>
+                            <div>10</div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="sep_board"></div>
+            </div>
+        </div>
+    </body>
+
+    <style>
+        body{
+            background-color: #ededed;
+        }
+        .board{
+            margin: auto;
+            width: 55%;
+            height: 450px;
+            background-color: #e2e2e2;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .titulo_grafica{
+            width: 100%;
+            height: 10%;
+        }
+        .titulo_grafica>h3{
+            padding: 0;
+            margin: 0px;
+            text-align: center;
+            color: #666666;
+        }
+        .sub_board{
+            width: 100%;
+            height: 90%;
+            padding: 10px;
+            margin-top: 0px;
+            background-color:#f4f4f4;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .sep_board{
+            width: 100%;
+            height: 10%;
+        }
+        .cont_board{
+            width: 100%;
+            height: 80%;
+        }
+        .graf_board{
+            width: 85%;
+            height: 100%;
+            float: right;
+            margin-top: 0px;
+            background-color: darkgrey;
+            border-left: 2px solid #999999;
+            border-bottom: 2px solid #999999;
+            box-sizing: border-box;
+            display: flex;
+            background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, 
+            rgba(0,0,0,0) 9.5%,  rgba(0,0,0,0.3) 10%, rgba(0,0,0,0) 10.5%, 
+            rgba(0,0,0,0) 19.5%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0) 20.5%, 
+            rgba(0,0,0,0) 29.5%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 30.5%, 
+            rgba(0,0,0,0) 39.5%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 40.5%, 
+            rgba(0,0,0,0) 49.5%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 50.5%, 
+            rgba(0,0,0,0) 59.5%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 60.5%, 
+            rgba(0,0,0,0) 69.5%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 70.5%, 
+            rgba(0,0,0,0) 79.5%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0) 80.5%, 
+            rgba(0,0,0,0) 89.5%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0) 90.5%,  
+            rgba(0,0,0,0) 100%);
+
+            background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, 
+            rgba(0,0,0,0) 9.5%,  rgba(0,0,0,0.3) 10%, rgba(0,0,0,0) 10.5%, 
+            rgba(0,0,0,0) 19.5%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0) 20.5%, 
+            rgba(0,0,0,0) 29.5%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 30.5%, 
+            rgba(0,0,0,0) 39.5%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 40.5%, 
+            rgba(0,0,0,0) 49.5%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 50.5%, 
+            rgba(0,0,0,0) 59.5%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 60.5%, 
+            rgba(0,0,0,0) 69.5%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 70.5%, 
+            rgba(0,0,0,0) 79.5%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0) 80.5%, 
+            rgba(0,0,0,0) 89.5%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0) 90.5%,  
+            rgba(0,0,0,0) 100%);
+
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0) 9.5%,  rgba(0,0,0,0.3) 10%, rgba(0,0,0,0) 10.5%, 
+            rgba(0,0,0,0) 19.5%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0) 20.5%, 
+            rgba(0,0,0,0) 29.5%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 30.5%, 
+            rgba(0,0,0,0) 39.5%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 40.5%, 
+            rgba(0,0,0,0) 49.5%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 50.5%, 
+            rgba(0,0,0,0) 59.5%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 60.5%, 
+            rgba(0,0,0,0) 69.5%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 70.5%, 
+            rgba(0,0,0,0) 79.5%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0) 80.5%, 
+            rgba(0,0,0,0) 89.5%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0) 90.5%, 
+            rgba(0,0,0,0) 100%);
+
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .barra{
+            width:100%;
+            height: 100%;
+            margin-right: 15px;
+            margin-left: 15px;
+            background-color: none;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+        .sub_barra{
+            width: 100%;
+            background: #00799b;
+            background: -moz-linear-gradient(top, #00799b 0%, #64d1be 100%);
+            background: -webkit-linear-gradient(top, #00799b 0%,#64d1be 100%);
+            background: linear-gradient(to bottom, #00799b 0%,#64d1be 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00799b', endColorstr='#64d1be',GradientType=0 );
+            
+            -webkit-border-radius: 3px 3px 0 0;
+            border-radius: 3px 3px 0 0;
+        }
+        .tag_g{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin-bottom: 30px;
+            text-align: center;
+            margin-top: -20px;
+            z-index: 2;
+        }
+        .tag_leyenda{
+            width: 100%;
+            text-align: center;
+            margin-top: 5px;
+        }
+        .tag_board{
+            height: 100%;
+            width: 15%;
+            border-bottom: 2px solid rgba(0,0,0,0);
+            box-sizing: border-box;
+        }
+        .sub_tag_board{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+        .sub_tag_board>div{
+            width: 100%;
+            height: 10%;
+            text-align: right;
+            padding-right: 10px;
+            box-sizing: border-box;
+        }
+    </style>
 @endsection

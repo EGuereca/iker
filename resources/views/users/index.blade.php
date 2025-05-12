@@ -3,7 +3,7 @@
 @section('content')
     <h1>Lista de Usuarios</h1>
     <a href="{{ route('users.create') }}">Crear nuevo usuario</a>
-
+    <a href="{{ route('users.stats') }}">Stats</a>
     @if(session('success'))
         <p>{{ session('success') }}</p>
     @endif
@@ -21,7 +21,7 @@
         <tbody>
             @foreach($users as $user)
                 <tr>
-                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->name }}</td>  
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->gender }}</td>
                     <td>{{ $user->age }}</td>

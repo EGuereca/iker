@@ -16,8 +16,5 @@ use App\Http\Controllers\UserController;
 
 Route::resource('users', UserController::class);
 
-Route::get('graficos', function () {
-    return view('users.stats');
-})->name('users.graphs');
 
 
