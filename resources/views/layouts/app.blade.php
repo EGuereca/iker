@@ -8,5 +8,8 @@
     <div class="container">
         @yield('content')
     </div>
+    @yield('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-7j6g1z4m3"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

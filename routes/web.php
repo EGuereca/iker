@@ -17,5 +17,5 @@ use App\Http\Controllers\AuthController;
 
 Route::resource('users', UserController::class);
 
-Route::get('/login', [AuthController::class, 'index'])->name('login.index');
-Route::post('/login', [AuthController::class, 'authenticate'])->name('login.authenticate');
+Route::get('/', [AuthController::class, 'index'])->name('login.index');
+Route::post('/', [AuthController::class, 'authenticate'])->name('login.authenticate');

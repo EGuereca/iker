@@ -2,6 +2,8 @@
 
 @section('content')
     <body>
+        <br>
+        <a class="btn btn-primary" href="{{ route('users.index') }}">Volver</a>
         <div class="board">
             <div class="titulo_grafica">
                 <h3 class="t_grafica">Cantidad de Hombres y mujeres</h3>
