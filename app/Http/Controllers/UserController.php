@@ -9,10 +9,26 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        $this->middleware('auth');
+    }
+
+    public function index(Request $request)
+    {
+        $query = User::query();
+
+    if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%");
+        });
+    }
+
+    $users = $query->paginate(10)->withQueryString(); // conserva los filtros al paginar
+
+    return view('users.index', compact('users'));
     }
 
     public function create()

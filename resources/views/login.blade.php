@@ -42,13 +42,13 @@
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" name="email" id="email" class="form-control" required placeholder="Enter your email">
+                    <input type="email" name="email" id="email" class="form-control" required placeholder="Ingrese su email">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password:</label>
-                    <input type="password" name="password" id="password" class="form-control" required placeholder="Enter your password">
+                    <input type="password" name="password" id="password" class="form-control" required placeholder="Ingrese su contraseña">
                 </div>
-                <button type="submit" class="btn btn-primary btn-login">Login</button>
+                <button type="submit" class="btn btn-primary btn-login">Acceder</button>
             </form>
         </div>
     </div>
