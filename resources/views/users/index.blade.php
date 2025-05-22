@@ -7,6 +7,13 @@
             <h1 class="mb-0">Usuarios</h1>
         </a>
         <div class="d-flex gap-2">
+            <form action="{{ route('auth.logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger btn-lg">
+                    <i class="bi bi-box-arrow-right me-1"></i> Cerrar sesión
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </form>
             <a class="btn btn-success btn-lg" href="{{ route('users.create') }}">
                 <i class="bi bi-plus-circle me-1"></i> Crear usuario
             </a>
