@@ -3,7 +3,7 @@
 @section('content')
     <body>
         <br>
-        <a class="btn btn-primary" href="{{ route('users.index') }}">Volver</a>
+        <a class="btn btn-primary" href="{{ route('users.index') }}"> <i class="fa-solid fa-arrow-left"></i> Volver</a>
         <div class="board">
             <div class="titulo_grafica">
                 <h3 class="t_grafica">Cantidad de Hombres y mujeres</h3>
@@ -139,6 +139,8 @@
                 <div class="sep_board"></div>
             </div>
         </div>
+        <br>
+        <br>
     </body>
 
     <style>
@@ -148,7 +150,7 @@
         .board{
             margin: auto;
             width: 55%;
-            height: 450px;
+            height: 500px;
             background-color: #e2e2e2;
             padding: 10px;
             box-sizing: border-box;

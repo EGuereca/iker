@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/users/stats', [UserController::class, 'stats'])->name('users.stats');
+Route::post('/users-create', [UserController::class, 'apiStore']);

@@ -9,16 +9,18 @@
         <div class="d-flex gap-2">
             <form action="{{ route('auth.logout') }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-danger btn-lg">
+                <button type="submit" class="btn btn-danger">
                     <i class="bi bi-box-arrow-right me-1"></i> Cerrar sesión
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
             </form>
-            <a class="btn btn-success btn-lg" href="{{ route('users.create') }}">
+            <a class="btn btn-success" href="{{ route('users.create') }}">
                 <i class="bi bi-plus-circle me-1"></i> Crear usuario
+                <i class="fas fa-user-plus"></i>
             </a>
-            <a class="btn btn-warning btn-lg" href="{{ route('users.stats') }}">
+            <a class="btn btn-warning" href="{{ route('users.stats') }}">
                 <i class="bi bi-bar-chart-fill me-1"></i> Estadísticas
+                <i class="fas fa-chart-bar"></i>
             </a>
         </div>
     </div>
@@ -68,9 +70,9 @@
                                 <td class="align-middle">{{ $user->email }}</td>
                                 <td class="align-middle">
                                     @if($user->gender == 'male')
-                                        <span class="badge bg-primary">{{ $user->gender }}</span>
+                                        <span class="badge bg-primary">Masculino</span>
                                     @elseif($user->gender == 'female')
-                                        <span class="badge bg-success">{{ $user->gender }}</span>
+                                        <span class="badge bg-success">Femenino</span>
                                     @else
                                         <span class="badge bg-secondary">{{ $user->gender }}</span>
                                     @endif

@@ -39,7 +39,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:100|min:2|not_regex:/[0-9]/',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6',
             'gender' => 'required|in:male,female',
@@ -55,6 +55,33 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('users.index')->with('success', 'Usuario creado');
+    }
+
+    /**
+     * Crear usuario vía API
+     */
+    public function apiStore(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:100|min:2|not_regex:/[0-9]/',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:6',
+            'gender' => 'required|in:male,female',
+            'age' => 'nullable|integer|min:0|max:120',
+        ]);
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'gender' => $validated['gender'],
+            'age' => $validated['age'] ?? null,
+        ]);
+
+        return response()->json([
+            'message' => 'Usuario creado correctamente',
+            'user' => $user
+        ], 201);
     }
 
     public function show(User $user)
